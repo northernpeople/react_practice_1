@@ -7,7 +7,17 @@ class TodosComponent extends Component {
     render(){
         return(
             <ul>
-                <li>hi component!</li>
+                {this.props.todos.map( td => (
+                 
+                    <li key={td}>{td}
+            
+                    <button onClick={() => this.props.removeHandler(td)}> Remove {td} 
+                    </button>
+                    
+                    </li>
+                 
+                 ))}
+                
             </ul>
         )
     }
