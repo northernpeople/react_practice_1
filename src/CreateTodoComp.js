@@ -16,7 +16,7 @@ class CreateTodoComp extends Component {
                 <h2> Hi! from create Todos</h2>
                 <input type="text" onChange={(event) => this.updateQuery(event.target.value)} value={this.state.query} />
 
-                <button onClick={() => {
+                <button onClick={( ) => {
                                  this.props.addTodo(this.state.query);
                                  this.updateQuery("");
                                 }}> Add </button>
