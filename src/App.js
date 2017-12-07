@@ -11,19 +11,26 @@ class App extends Component {
       todos : ["clean my room", "buy milk"]
     }
 
+
     removeTodo = (tdRemove) => {
         this.setState(
           (old) => ( { todos : old.todos.filter( e => e !== tdRemove ) } )
         );
     }
+    
+    addTodo = (td) => {
+                console.log("In root state: "+ this.state.todos)
+        this.setState(
+            (old) => ({ todos : old.todos.concat([td]) })
+        );
+    }
 
-
-            
+         
   render() {
     return (
         <div>
         <TodosComponent todos={this.state.todos} removeHandler={this.removeTodo}/>
-        <CreateTodoComp/>
+        <CreateTodoComp addTodo={this.addTodo}/>
         </div>
 
     );
@@ -31,6 +38,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
