@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import TodosComponent from "./TodosComponent";
 import CreateTodoComp from "./CreateTodoComp";
 import {Route} from "react-router-dom";
-
-import logo from './logo.svg';
-import './App.css';
+import Footer from "./Footer";
+import Loading from "./Loading";
 
 class App extends Component {
-    
+
     state  = {
       todos : ["clean my room", "buy milk"]
     }
@@ -18,26 +17,27 @@ class App extends Component {
           (old) => ( { todos : old.todos.filter( e => e !== tdRemove ) } )
         );
     }
-    
+
     addTodo = (td) => {
-                console.log("In root state: "+ this.state.todos)
         this.setState(
             (old) => ({ todos : old.todos.concat([td]) })
         );
-        
     }
 
-         
+
   render() {
     return (
         <div>
-            <Route path="/" exact render={ ()=>( <TodosComponent todos={this.state.todos} removeHandler={this.removeTodo}/>  
+            <Route path="/" exact render={ ()=>( <TodosComponent todos={this.state.todos} removeHandler={this.removeTodo}/>
                     )}
             />
-            <Route path="/create" render={({history})=>( 
+            <Route path="/create" render={({history})=>(
                 <CreateTodoComp addTodo={ (td) =>{  this.addTodo(td);
-                                                    history.push("/"); } }/> ) } 
-            />      
+                                                    history.push("/"); } }/> ) }
+            />
+
+            <Loading />
+            <Footer todos={this.state.todos} />
         </div>
 
     );
